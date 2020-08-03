@@ -43,3 +43,62 @@ if ( sizeof($request_array['events']) > 0 ) {
     }
 }
 echo "OK";
+
+if (!is_null($events['events'])) {
+
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+    
+        // Line API send a lot of event type, we interested in message only.
+		if ($event['type'] == 'message') {
+
+            switch($event['message']['type']) {
+                
+                case 'text':
+                    // Get replyToken
+                    $replyToken = $event['replyToken'];
+   
+                    // Reply message
+                    $respMessage = ''. $event['message']['text'];
+                    /*
+                    $userText = ''. $event['message']['text'];
+                    switch($userText){
+                        case 'กำหนดสอบ':
+                            $respMessage = 'กำหนดสอบธรรมสนามหลวง คลิ๊ก >>
+                            http://www.gongtham.net/web/news.php';
+                        break;
+
+                        case 'ใบคำร้อง':
+                            $respMessage = 'ดาวน์โหลดใบคำร้อง คลิ๊ก >>
+                            http://www.gongtham.net/web/downloads.php?cat_id=5&download_id=80';
+                        break;
+
+                    }
+                    */
+                    if($event['message']['text'] == "กำหนดสอบ"){
+                        $respMessage = "กำหนดสอบธรรมสนามหลวง คลิ๊ก >>
+                        http://www.gongtham.net/web/news.php";
+
+                    }elseif($event['message']['text'] == "ขอใบประกาศ"){
+                        $respMessage = "ดาวน์โหลดใบคำร้อง คลิ๊ก >>
+                        http://www.gongtham.net/web/downloads.php?cat_id=5&download_id=80";
+
+                    }elseif($event['message']['text'] == ""){
+                        $respMessage = ''. $event['message']['text'];
+                    }else{
+                        $respMessage = 'ติดต่อเจ้าหน้าที่ โทร. ...';
+                    }
+                                
+                    $httpClient = new CurlHTTPClient($channel_token);
+                    $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
+        
+                    $textMessageBuilder = new TextMessageBuilder($respMessage);
+                    $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+                    
+                    break;
+            }
+		}
+	}
+}
+
+echo "Hello LINEBot";
