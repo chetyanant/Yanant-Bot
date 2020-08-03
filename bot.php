@@ -37,9 +37,6 @@ if ( sizeof($request_array['events']) > 0 ) {
       $data = [
          'replyToken' => $reply_token,
          'messages' => [['type' => 'text', 'text' => $text ]]
-		 if {'messages' => [['type' => 'กำหนดสอบ',
-		  'text' =>  'กำหนดสอบธรรมสนามหลวง คลิ๊ก >> http://www.gongtham.net/web/news.php']]
-	  }
       ];
 	  
       $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
