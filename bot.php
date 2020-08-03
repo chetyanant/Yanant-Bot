@@ -2,9 +2,9 @@
 // URL API LINE
 $API_URL = 'https://api.line.me/v2/bot/message';
 // ใส่ Channel access token (long-lived)
-$ACCESS_TOKEN = 'nbIgFBzg8pAmpUnJpb9I99uwzD8eVoLGKgIDO5xPQywMwDgLic96zmVV46sjNxXOv7iywr1OGuf8z5tYmKzwBwoMz4UdwT/DMO1vxa2+mVoBgfB42B3BLNEl2xZb32IoBZrlbtaw53fI+zG8YcJzKwdB04t89/1O/w1cDnyilFU=';
+$ACCESS_TOKEN = 'BCOvf1t/i6Yw4Tuh5YL1ee0i9B5i63x57X62O4Bk3ZIO0SoW6Sp5pUGl7wZOypqYv7iywr1OGuf8z5tYmKzwBwoMz4UdwT/DMO1vxa2+mVqdGlFdoDkpnAqeRw8mTGNyy3PIbn3eH5+jIW4dinIFkgdB04t89/1O/w1cDnyilFU=';
 // ใส่ Channel Secret
-$CHANNEL_SECRET = '15116d0943bd5a3567cc48c8fe6a4acb';
+$CHANNEL_SECRET = 'ad758cdb84873efe137e6d24b5712732';
 
 // Set HEADER
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
