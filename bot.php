@@ -31,28 +31,17 @@ function send_reply_message($url, $post_header, $post_body)
 if ( sizeof($request_array['events']) > 0 ) {
    foreach ($request_array['events'] as $event) {
       
-      $reply_token = $event['replyToken'];
-      $reply_message = ''. $event['message']['text'];
-    //   $text = $event['message']['text'];
-    //   $data = [
-    //      'replyToken' => $reply_token,
-    //      'messages' => [['type' => 'text', 'text' => $text ]]
-
-    //   ];
-    if($event['message']['text'] == "กำหนดสอบ"){
-        $reply_message = "กำหนดสอบธรรมสนามหลวง คลิ๊ก >>
-        http://www.gongtham.net/web/news.php";
+    $reply_message = '';
+    $reply_token = $event['replyToken'];
+    $text = $event['message']['text'];
+    $data = [
+        'replyToken' => $reply_token,
+        'messages' => [['type' => 'text', 'text' => $text ]]
+    ];
+    if($event['message']['text'] == "Hi"){
+        $reply_message = "Hello";
     }
 
-    // }elseif($event['message']['text'] == "ขอใบประกาศ"){
-    //     $reply_message = "ดาวน์โหลดใบคำร้อง คลิ๊ก >>
-    //     http://www.gongtham.net/web/downloads.php?cat_id=5&download_id=80";
-
-    // }elseif($event['message']['text'] == ""){
-    //     $reply_message = ''. $event['message']['text'];
-    // }else{
-    //     $reply_message = 'ติดต่อเจ้าหน้าที่ โทร. ...';
-    // }
 	  
       $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
       $send_result = send_reply_message($API_URL.'/reply',      $POST_HEADER, $post_body);
