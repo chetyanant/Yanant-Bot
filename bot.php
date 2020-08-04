@@ -1,4 +1,7 @@
 <?php
+// URL API LINE
+$API_URL = 'https://api.line.me/v2/bot/message';
+
 require_once('./nextflow-reserve/vendor/autoload.php');
 
 // Namespace
