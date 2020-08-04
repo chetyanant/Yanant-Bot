@@ -9,10 +9,14 @@ $CHANNEL_SECRET = 'ad758cdb84873efe137e6d24b5712732';
 
 // Set HEADER
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
+
+
 // Get request content
 $request = file_get_contents('php://input');
 // Decode JSON to Array
 $request_array = json_decode($request, true);
+
+
 
 function send_reply_message($url, $post_header, $post_body)
 {
@@ -28,15 +32,16 @@ function send_reply_message($url, $post_header, $post_body)
     return $result;
 }
 
+
 if ( sizeof($request_array['events']) > 0 ) {
    foreach ($request_array['events'] as $event) {
       
       $reply_message = '';
       $reply_token = $event['replyToken'];
-      $text = $event['message']['text'];
+      $text = $event['message']['ขอใบประกาศ'];
       $data = [
          'replyToken' => $reply_token,
-         'messages' => [['type' => 'text', 'text' => $text ]]
+         'messages' => [['type' => 'text', 'อนุมัติทันที' => $text ]]
       ];
 	  
       $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
