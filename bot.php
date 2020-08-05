@@ -35,7 +35,7 @@ if ( sizeof($request_array['events']) > 0 ) {
        $text = $event['message']['text'];
        $data = [
           'replyToken' => $reply_token,
-          'message' => [['type' => 'Hi', 'Hi5' => $text ]]
+          'message' => [['type' => 'text', 'text' => $text ]]
        ];
 
        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
