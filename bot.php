@@ -27,30 +27,19 @@ function send_reply_message($url, $post_header, $post_body)
 
     return $result;
 }
-
-if ( sizeof($request_array['events'])) {
-
-   // Loop through each event
-   foreach ($request_array['events'] as $event) {
-
-    // Line API send a lot of event type, we interested in message only.
-	if ($event['type'] == 'message') {
-        switch($event['message']['type']) { 
-            case 'text':
-                // Get replyToken
-                $replyToken = $event['replyToken'];
-                // Reply message
-                $respMessage = ''. $event['message']['text'];
-
-                if($event['message']['text'] == "กำหนดสอบ"){
-                    $respMessage = "กำหนดสอบธรรมสนามหลวง คลิ๊ก >>
-                    http://www.gongtham.net/web/news.php";
-
-                }
-	  
-                $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-                $send_result = send_reply_message($API_URL.'/reply',      $POST_HEADER, $post_body);
-                echo "Result: ".$send_result."\r\n";
-    }
-}
-echo "OK";
+if ( sizeof($request_array['events']) > 0 ) {
+    foreach ($request_array['events'] as $event) {
+       
+       $reply_message = '';
+       $reply_token = $event['replyToken'];
+       $text = $event['message']['text'];
+       $data = [
+          'replyToken' => $reply_token,
+          'messages' => [['type' => 'text', 'text' => $text ]]
+       ];
+       $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+       $send_result = send_reply_message($API_URL.'/reply',      $POST_HEADER, $post_body);
+       echo "Result: ".$send_result."\r\n";
+     }
+ }
+ echo "OK";
