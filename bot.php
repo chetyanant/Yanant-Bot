@@ -33,6 +33,9 @@ if ( sizeof($request_array['events']) > 0 ) {
        $reply_message = '';
        $reply_token = $event['replyToken'];
        $text = $event['message']['text'];
+        if($event['message']['text'] == "Hi")  {
+            $reply_message = "Hi5";
+        }
        $data = [
           'replyToken' => $reply_token,
           'messages' => [['type' => 'text', 'text' => $text ]]
