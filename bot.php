@@ -38,7 +38,7 @@ if ( sizeof($request_array['events']) > 0 ) {
           'messages' => [['type' => 'text', 'text' => $text ]]
        ];
 
-       if($event['message']['text'] == "Hi"){
+       if($text == "Hi"){
         $reply_message = "Hi5";
        }
 
