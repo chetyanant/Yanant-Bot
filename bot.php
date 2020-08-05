@@ -33,11 +33,10 @@ if ( sizeof($request_array['events']) > 0 ) {
        $reply_message = '';
        $reply_token = $event['replyToken'];
        $text = $event['message']['text'];
-       
-
-       if($text == "Hi"){
-        $reply_message = "Hi5";
-       }
+       $data = [
+          'replyToken' => $reply_token,
+          'Hi' => [['type' => 'text', 'Hi5' => $text ]]
+       ];
 
        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
        $send_result = send_reply_message($API_URL.'/reply',      $POST_HEADER, $post_body);
